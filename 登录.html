@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>登录</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('QQ20241110-142858.png');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .login-content {
+    background-color: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    max-width: 100%;
+    text-align: center;
+  }
+  h1 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px; /* 增加字体大小 */
+    background: linear-gradient(45deg, #007bff, #0056b3); /* 蓝色渐变 */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; /* 使文字颜色透明，以显示背景渐变 */
+  }
+  .tagline {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: red;
+  font-size: 36px;
+  white-space: nowrap; /* 保持文本在一行内 */
+  animation: marquee 10s linear infinite; /* 定义动画 */
+}
+
+/* 定义动画关键帧 */
+@keyframes marquee {
+  from {
+    transform: translateX(100%); /* 从页面右侧开始 */
+  }
+  to {
+    transform: translateX(-100%); /* 移动到页面左侧 */
+  }
+}
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* 增加元素之间的间距 */
+  }
+  form p {
+    margin-bottom: 5px; /* 减少标签的下边距 */
+    font-weight: bold;
+  }
+  form select,
+  form input[type="number"],
+  form input[type="radio"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  form input[type="radio"] {
+    width: auto; /* 单选按钮不需要占满整行 */
+  }
+  form label {
+    display: block;
+    margin-top: 5px; /* 单选按钮标签的上边距 */
+  }
+  form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #5cb85c;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* 按钮占满整行 */
+  }
+  form button:hover {
+    background-color: #4cae4c;
+  }
+</style>
+</head>
+<body>
+
+<div class="login-content">
+  <h1>郭哥人生模拟器</h1>
+  <h1>登录</h1>
+  <p class="tagline">爱情、背叛、命运<br>你准备好掌控郭哥的未来吗？</p>
+  <form id="loginForm">
+    <p>郭哥生日选择题</p>
+    <label for="month">月份:</label>
+    <select id="month" name="month">
+      <option value="01">一月</option>
+      <option value="02">二月</option>
+      <option value="03">三月</option>
+      <option value="04">四月</option>
+      <option value="05">五月</option>
+      <option value="06">六月</option>
+      <option value="07">七月</option>
+      <option value="08">八月</option>
+      <option value="09">九月</option>
+      <option value="10">十月</option>
+      <option value="11">十一月</option>
+      <option value="12">十二月</option>
+    </select>
+    
+    <label for="day">日期:</label>
+    <input type="number" id="day" name="day" min="1" max="31" placeholder="日" required>
+
+    <p>郭哥骑车时看什么？</p>
+    <label>
+      <input type="radio" name="question2" value="A">
+      腿
+    </label>
+    <label>
+      <input type="radio" name="question2" value="B">
+      路面
+    </label>
+    <button type="submit">提交</button>
+  </form>
+</div>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // 阻止表单默认提交行为
+  
+  var month = document.getElementById('month').value;
+  var day = document.getElementById('day').value;
+  var birthday = month + '-' + day; // 构造MM-DD格式的生日字符串
+  var answer2 = document.querySelector('input[name="question2"]:checked').value;
+  
+  // 郭哥的生日是1月15日
+  var correctBirthday = '01-15'; // 正确日期格式为"MM-DD"
+  var correctAnswer2 = 'A'; // 正确答案是"路面"
+  
+  if (birthday === correctBirthday && answer2 === correctAnswer2) {
+    // 正确答案，跳转到游戏内容
+    window.location.href = '郭哥情感经历模拟器.html'; // 假设游戏内容在game.html
+  } else {
+    alert('答案错误，请再试一次！');
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,444 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>郭哥情感经历模拟器</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+  }
+  .chapter-content {
+  background-color: white; /* 设置白色背景 */
+  border: 1px solid #ddd; /* 设置边框颜色和样式 */
+  padding: 20px; /* 设置内边距 */
+  margin: 20px auto; /* 设置外边距，自动水平居中 */
+  width: 80%; /* 设置宽度，根据需要调整 */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 添加阴影，增加立体感 */
+  }
+  .choice-button {
+  display: inline-block; /* 使按钮以行内块级元素显示 */
+  padding: 10px 20px;
+  margin: 10px auto; /* 设置上下外边距为10px，左右外边距自动，实现水平居中 */
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center; /* 设置文本居中 */
+  }
+  .consequence {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    display: none;
+    text-align: center; /* 设置文本居中 */
+  }
+  .green-text {
+    color: green;
+  }
+</style>
+<script>
+function startJourney() {
+  // 隐藏开始页面
+  document.getElementById('start').style.display = 'none';
+  // 显示第一个章节
+  document.getElementById('chapter1').style.display = 'block';
+}
+
+function showConsequence(choice) {
+  var consequence = document.getElementById('consequence-' + choice);
+  consequence.style.display = 'block';
+}
+</script>
+</head>
+<body>
+
+<div id="start">
+  <h1>欢迎来到郭哥的爱情旅程</h1>
+  <p>在这个充满未知的模拟游戏中，你将扮演郭哥，一个普通的年轻人，他的生活因你的选择而变得丰富多彩。</p>
+  <p>郭哥，一个性格温和的大学生，正站在人生的十字路口。他的爱情故事将如何发展？是甜蜜的浪漫，还是心碎的悲剧？每一个决定都掌握在你的手中。</p>
+  <p>准备好了吗？让我们开始吧！</p>
+  <button class="choice-button" onclick="startJourney()">准备好了</button>
+  <button class="choice-button" onclick="alert('以铜为镜，可以正衣冠；以古为镜，可以知兴替；以人为镜，可以明得失。\n你难道不想以郭哥为镜吗？')">没有准备好</button>
+  <p style="font-size: 18px; color: #555;">在这个游戏中，你的选择不仅仅是选择，它们是郭哥命运的转折点。</p>
+  <p style="font-size: 18px; color: #555;">每一个决定都可能带来意想不到的后果，你准备好面对它们了吗？</p>
+  
+
+</div>
+
+<div id="chapter1" style="display:none;">
+  <div class="chapter-content">
+  <h2>大一：新生活的开始</h2>
+  <p>情节：郭哥刚进入大学，参加了迎新活动。</p>
+  <button class="choice-button" onclick="showConsequenceAndNext(1, 'A1')">加入学生会，结识更多的朋友。</button>
+  <button class="choice-button" onclick="showConsequenceAndNext(1, 'A2')">专注于学业，很少参加社交活动。</button>
+  <div id="consequence-A1" class="consequence green-text">在学生会中，郭哥遇到了李婷，一个活泼开朗的女孩。</div>
+  <div id="consequence-A2" class="consequence green-text">郭哥在图书馆遇到了张薇，一个同样热爱学习的安静女孩。</div>
+  <button class="choice-button" id="goNext1" style="display:none;" onclick="goToNextChapter(2)">Go Next</button>
+  </div>
+</div>
+
+<div id="chapter2" style="display:none;">
+  <div class="chapter-content">
+  <h2>大二：探索与成长</h2>
+  <p>情节：郭哥开始考虑自己的未来，同时也在探索感情。</p>
+  
+  <button class="choice-button" id="choice-A1-B1" style="display:none;" onclick="showConsequenceAndNext(2, 'A1-B1')">开始与李婷约会。</button>
+  <button class="choice-button" id="choice-A1-B2" style="display:none;" onclick="showConsequenceAndNext(2, 'A1-B2')">保持与李婷的友谊，专注于个人兴趣和社团活动。</button>
+  <button class="choice-button" id="choice-A2-B1" style="display:none;" onclick="showConsequenceAndNext(2, 'A2-B1')">开始与张薇约会。</button>
+  <button class="choice-button" id="choice-A2-B2" style="display:none;" onclick="showConsequenceAndNext(2, 'A2-B2')">继续保持单身，专注于个人兴趣和社团活动。</button>
+  
+  <div id="consequence-A1-B1" class="consequence green-text" style="display:none;">郭哥和李婷的关系迅速发展，但李婷非常活跃，经常参加各种活动，郭哥需要平衡时间。</div>
+  <div id="consequence-A1-B2" class="consequence green-text" style="display:none;">郭哥在社团中更加活跃，但与李婷的关系逐渐变得疏远。</div>
+  <div id="consequence-A2-B1" class="consequence green-text" style="display:none;">郭哥和张薇的关系稳定发展，两人一起学习，共同进步。</div>
+  <div id="consequence-A2-B2" class="consequence green-text" style="display:none;">郭哥在社团中担任了重要角色，个人能力得到了很大的提升，但感情生活依旧空白。</div>
+  
+  <button class="choice-button" id="goNext2" style="display:none;" onclick="goToNextChapter(3)">Go Next</button>
+  </div>
+</div>
+<div id="chapter3" style="display:none;">
+  <div class="chapter-content">
+  <h2>大三：挑战与决策</h2>
+  <p>情节：郭哥的感情生活出现了一些挑战，同时学业压力也在增加。</p>
+  
+  <button class="choice-button" id="choice-A1-B1-C1" style="display:none;" onclick="showConsequenceAndNext(3, 'A1-B1-C1')">努力平衡学业和感情，与李婷共同面对挑战。</button>
+  <button class="choice-button" id="choice-A1-B1-C2" style="display:none;" onclick="showConsequenceAndNext(3, 'A1-B1-C2')">因为学业压力，选择暂时放下感情，专注于学业。</button>
+  <button class="choice-button" id="choice-A1-B2-C1" style="display:none;" onclick="showConsequenceAndNext(3, 'A1-B2-C1')">邀请李婷一起参加学术竞赛。</button>
+  <button class="choice-button" id="choice-A2-B1-C1" style="display:none;" onclick="showConsequenceAndNext(3, 'A2-B1-C1')">和张薇一起准备重要的考试。</button>
+  <button class="choice-button" id="choice-A2-B1-C2" style="display:none;" onclick="showConsequenceAndNext(3, 'A2-B1-C2')">因为学业压力，选择暂时放下感情，专注于学业。</button>
+  
+  <div id="consequence-A1-B1-C1" class="consequence green-text" style="display:none;">郭哥和李婷一起度过了难关，感情更加坚固，但也牺牲了一些个人时间。</div>
+  <div id="consequence-A1-B1-C2" class="consequence green-text" style="display:none;">郭哥的学业成绩有所提升，但感情生活因此受到了影响，可能面临分手。</div>
+  <div id="consequence-A1-B2-C1" class="consequence green-text" style="display:none;">郭哥和李婷在竞赛中合作，关系得到了加深，同时也提升了学术能力。</div>
+  <div id="consequence-A2-B1-C1" class="consequence green-text" style="display:none;">郭哥和张薇一起努力，两人的关系和学业都得到了提升。</div>
+  <div id="consequence-A2-B1-C2" class="consequence green-text" style="display:none;">郭哥的学业成绩有所提升，但感情生活因此受到了影响，可能面临分手。</div>
+  
+  <button class="choice-button" id="goNext3" style="display:none;" onclick="goToNextChapter(4)">Go Next</button>
+  </div>
+</div>
+
+<div id="chapter4" style="display:none;">
+  <div class="chapter-content">
+  <h2>大四：毕业与未来</h2>
+  <p>情节：大学生活即将结束，郭哥面临着毕业后的选择。</p>
+  
+  <button class="choice-button" id="choice-A1-B1-C1-D1" style="display:none;" onclick="showConsequenceAndNext(4, 'A1-B1-C1-D1')">接受外地的工作机会，与李婷开始异地恋。</button>
+  <button class="choice-button" id="choice-A1-B1-C1-D2" style="display:none;" onclick="showConsequenceAndNext(4, 'A1-B1-C1-D2')">留在本地，与李婷共同规划未来。</button>
+  <button class="choice-button" id="choice-A1-B1-C2-D1" style="display:none;" onclick="showConsequenceAndNext(4, 'A1-B1-C2-D1')">独自接受外地的工作机会，与李婷分手。</button>
+  <button class="choice-button" id="choice-A1-B2-C1-D1" style="display:none;" onclick="showConsequenceAndNext(4, 'A1-B2-C1-D1')">邀请李婷一起参加外地的工作项目。</button>
+  <button class="choice-button" id="choice-A2-B1-C1-D1" style="display:none;" onclick="showConsequenceAndNext(4, 'A2-B1-C1-D1')">接受外地的工作机会，与张薇开始异地恋。</button>
+  <button class="choice-button" id="choice-A2-B1-C1-D2" style="display:none;" onclick="showConsequenceAndNext(4, 'A2-B1-C1-D2')">留在本地，与张薇共同规划未来。</button>
+  <button class="choice-button" id="choice-A2-B1-C2-D1" style="display:none;" onclick="showConsequenceAndNext(4, 'A2-B1-C2-D1')">独自接受外地的工作机会，与张薇分手。</button>
+  
+  <div id="consequence-A1-B1-C1-D1" class="consequence green-text" style="display:none;">异地恋给郭哥和李婷带来了新的挑战，他们必须学会如何维持长距离的关系。</div>
+  <div id="consequence-A1-B1-C1-D2" class="consequence green-text" style="display:none;">郭哥和李婷一起在本地找到了工作，开始共同的生活，但也需要面对现实生活中的各种问题。</div>
+  <div id="consequence-A1-B1-C2-D1" class="consequence green-text" style="display:none;">郭哥专注于自己的职业生涯，但感情生活暂时空白。</div>
+  <div id="consequence-A1-B2-C1-D1" class="consequence green-text" style="display:none;">郭哥和李婷一起在外地工作，共同面对新的挑战。</div>
+  <div id="consequence-A2-B1-C1-D1" class="consequence green-text" style="display:none;">异地恋给郭哥和张薇带来了新的挑战，他们必须学会如何维持长距离的关系。</div>
+  <div id="consequence-A2-B1-C1-D2" class="consequence green-text" style="display:none;">郭哥和张薇一起在本地找到了工作，开始共同的生活，但也需要面对现实生活中的各种问题。</div>
+  <div id="consequence-A2-B1-C2-D1" class="consequence green-text" style="display:none;">郭哥专注于自己的职业生涯，但感情生活暂时空白。</div>
+  
+  <button class="choice-button" id="goNext4" style="display:none;" onclick="goToNextChapter(5)">Go Next</button>
+  </div>
+</div>
+
+<div id="chapter5" style="display:none;">
+  <div class="chapter-content">
+  <h2>出轨期：信任与背叛</h2>
+  <p>情节：在与李婷或张薇的关系中，郭哥遇到了新的诱惑，开始面临忠诚的考验。</p>
+  <p>此题建议实事求是，根据你所认识的郭哥，做出更加贴近实际的选项</p>
+  
+  <button class="choice-button" id="choice-D1-E1" style="display:none;" onclick="showConsequenceAndNext(5, 'D1-E1')">抵抗诱惑，忠于现有的感情。</button>
+  <button class="choice-button" id="choice-D1-E2" style="display:none;" onclick="showConsequenceAndNext(5, 'D1-E2')">出轨，与新人开始秘密关系。</button>
+  
+  <div id="consequence-D1-E1" class="consequence green-text" style="display:none;">郭哥的关系因为忠诚而变得更加坚固，但也可能会错过一些新的体验。</div>
+  <div id="consequence-D1-E2" class="consequence green-text" style="display:none;">郭哥在秘密关系中找到了新鲜感，但这也给他的现有关系带来了巨大的风险。</div>
+  
+  <button class="choice-button" id="goNext5" style="display:none;" onclick="goToNextChapter(6)">Go Next</button>
+  </div>
+</div>
+<div id="chapter6" style="display:none;">
+  <div class="chapter-content">
+  <h2>后果与发展</h2>
+  <p>情节：郭哥的秘密关系被揭露，他必须面对后果。</p>
+  
+  <button class="choice-button" id="choice-D1-E2-F1" style="display:none;" onclick="showConsequenceAndNext(6, 'D1-E2-F1')">坦白并寻求原谅。</button>
+  <button class="choice-button" id="choice-D1-E2-F2" style="display:none;" onclick="showConsequenceAndNext(6, 'D1-E2-F2')">继续隐瞒，直到关系自然结束。</button>
+  
+  <div id="consequence-D1-E2-F1" class="consequence green-text" style="display:none;">郭哥的诚实可能会让他的伴侣感到受伤，但也可能因为真诚而有机会重建信任。</div>
+  <div id="consequence-D1-E2-F2" class="consequence green-text" style="display:none;">郭哥可能会暂时避免冲突，但长期的隐瞒可能会导致信任的彻底破裂。</div>
+  
+  <button class="choice-button" id="goNext6" style="display:none;" onclick="goToNextChapter(7)">Go Next</button>
+  </div>
+</div>
+
+<div id="chapter7" style="display:none;">
+  <div class="chapter-content">
+    <h2>危机四伏</h2>
+    <p>情节：郭哥的事情败露后，他的生活陷入了混乱，工作也受到了影响。</p>
+    <!-- Choices -->
+    <button class="choice-button" id="choice-D1-E2-F1-G1" style="display:none;" onclick="showConsequenceAndNext(7, 'D1-E2-F1-G1')">努力挽回工作和感情，重新开始。</button>
+    <button class="choice-button" id="choice-D1-E2-F1-G2" style="display:none;" onclick="showConsequenceAndNext(7, 'D1-E2-F1-G2')">自暴自弃，放弃努力。</button>
+    <button class="choice-button" id="choice-D1-E2-F2-G1" style="display:none;" onclick="showConsequenceAndNext(7, 'D1-E2-F2-G1')">试图掩盖工作上的失误，同时维持着虚假的感情。</button>
+    <button class="choice-button" id="choice-D1-E2-F2-G2" style="display:none;" onclick="showConsequenceAndNext(7, 'D1-E2-F2-G2')">在混乱中决定离开这个城市，重新开始。</button>
+    <!-- Consequences -->
+    <div id="consequence-D1-E2-F1-G1" class="consequence green-text" style="display:none;">郭哥面临着巨大的压力，虽然努力挽回，但过程充满艰辛，结果也并不一定如他所愿。</div>
+    <div id="consequence-D1-E2-F1-G2" class="consequence green-text" style="display:none;">郭哥的生活变得一团糟，工作丢失，感情也无法挽回，陷入了极度的困境。</div>
+    <div id="consequence-D1-E2-F2-G1" class="consequence green-text" style="display:none;">郭哥的压力越来越大，最终被公司发现并辞退，感情也在谎言被揭穿后彻底破裂。</div>
+    <div id="consequence-D1-E2-F2-G2" class="consequence green-text" style="display:none;">郭哥离开了熟悉的环境，但在新的地方面临着各种未知的困难和挑战。</div>
+    <button class="choice-button" id="goNext7" style="display:none;" onclick="goToNextChapter(8)">Go Next</button>
+  </div>
+</div>
+<div id="chapter8" style="display:none;">
+  <div class="chapter-content">
+    <h2>陷入陷阱</h2>
+    <p>情节：郭哥在离开城市后，遇到了一个看似友好的人，对方给他提供了一个看似绝佳的机会。</p>
+    
+    <!-- Choices for Chapter 8 -->
+    <button class="choice-button" id="choice-D1-E2-F1-G1-H1" style="display:none;" onclick="showConsequenceAndNext(8, 'D1-E2-F1-G1-H1')">抓住这个机会。</button>
+    <button class="choice-button" id="choice-D1-E2-F1-G1-H2" style="display:none;" onclick="showConsequenceAndNext(8, 'D1-E2-F1-G1-H2')">拒绝这个机会。</button>
+    <button class="choice-button" id="choice-D1-E2-F1-G2-H1" style="display:none;" onclick="showConsequenceAndNext(8, 'D1-E2-F1-G2-H1')">抓住这个机会。</button>
+    <button class="choice-button" id="choice-D1-E2-F1-G2-H2" style="display:none;" onclick="showConsequenceAndNext(8, 'D1-E2-F1-G2-H2')">拒绝这个机会。</button>
+    <button class="choice-button" id="choice-D1-E2-F2-G1-H1" style="display:none;" onclick="showConsequenceAndNext(8, 'D1-E2-F2-G1-H1')">跟随对方。</button>
+    <button class="choice-button" id="choice-D1-E2-F2-G1-H2" style="display:none;" onclick="showConsequenceAndNext(8, 'D1-E2-F2-G1-H2')">试图离开。</button>
+    <button class="choice-button" id="choice-D1-E2-F2-G2-H1" style="display:none;" onclick="showConsequenceAndNext(8, 'D1-E2-F2-G2-H1')">跟随对方。</button>
+    <button class="choice-button" id="choice-D1-E2-F2-G2-H2" style="display:none;" onclick="showConsequenceAndNext(8, 'D1-E2-F2-G2-H2')">试图离开。</button>
+    
+    <!-- Consequences for Chapter 8 -->
+    <div id="consequence-D1-E2-F1-G1-H1" class="consequence green-text" style="display:none;">郭哥发现这是一个骗局，失去了财物并陷入危险。</div>
+    <div id="consequence-D1-E2-F1-G1-H2" class="consequence green-text" style="display:none;">郭哥避免了骗局，但生活依然艰难。</div>
+    <div id="consequence-D1-E2-F1-G2-H1" class="consequence green-text" style="display:none;">郭哥被卷入传销组织，失去了自由和声誉。</div>
+    <div id="consequence-D1-E2-F1-G2-H2" class="consequence green-text" style="display:none;">郭哥后悔没有抓住可能是唯一的机会。</div>
+    <div id="consequence-D1-E2-F2-G1-H1" class="consequence green-text" style="display:none;">郭哥被带入犯罪团伙，面临法律后果。</div>
+    <div id="consequence-D1-E2-F2-G1-H2" class="consequence green-text" style="display:none;">郭哥遭到殴打和威胁，身心受伤。</div>
+    <div id="consequence-D1-E2-F2-G2-H1" class="consequence green-text" style="display:none;">郭哥卷入金融诈骗案，失去积蓄并面临法律制裁。</div>
+    <div id="consequence-D1-E2-F2-G2-H2" class="consequence green-text" style="display:none;">郭哥被绑架，陷入更危险的境地。</div>
+    
+    <button class="choice-button" id="goNext8" style="display:none;" onclick="goToNextChapter(9)">Go Next</button>
+  </div>
+</div>
+<!-- Chapter 9: Desperate Ending -->
+<div id="chapter9" style="display:none;">
+  <div class="chapter-content">
+    <h2>绝望的结局</h2>
+    <p>情节：郭哥在经历了一系列的挫折后，已经身心俱疲，此时又收到了一个虚假的出国工作邀请。</p>
+    
+    <!-- Choice and Consequence for Path D1-E2-F1-G1-H1-I1 -->
+    <button class="choice-button" id="choice-D1-E2-F1-G1-H1-I1" style="display:none;" onclick="showConsequenceAndNext(9, 'D1-E2-F1-G1-H1-I1')">抱着一丝希望，决定出国工作。</button>
+    <div id="consequence-D1-E2-F1-G1-H1-I1" class="consequence green-text" style="display:none;">郭哥被骗到了境外，被犯罪分子控制，最终被噶了腰子，生命垂危。</div>
+    
+    <!-- Choice and Consequence for Path D1-E2-F1-G1-H1-I2 -->
+    <button class="choice-button" id="choice-D1-E2-F1-G1-H1-I2" style="display:none;" onclick="showConsequenceAndNext(9, 'D1-E2-F1-G1-H1-I2')">察觉到可能是骗局，拒绝出国。</button>
+    <div id="consequence-D1-E2-F1-G1-H1-I2" class="consequence green-text" style="display:none;">郭哥虽然避免了出国后的危险，但他在国内也找不到任何出路，生活陷入了绝境。</div>
+    
+    <!-- Choice and Consequence for Path D1-E2-F1-G1-H2-I1 -->
+    <button class="choice-button" id="choice-D1-E2-F1-G1-H2-I1" style="display:none;" onclick="showConsequenceAndNext(9, 'D1-E2-F1-G1-H2-I1')">因为之前的不良记录，他发现自己在社会上已经难以立足，决定出国工作。</button>
+    <div id="consequence-D1-E2-F1-G1-H2-I1" class="consequence green-text" style="display:none;">郭哥一到国外就被犯罪团伙控制，被迫参与非法活动，最终在一次失败的逃脱尝试中丧生。</div>
+    
+    <!-- Choice and Consequence for Path D1-E2-F1-G1-H2-I2 -->
+    <button class="choice-button" id="choice-D1-E2-F1-G1-H2-I2" style="display:none;" onclick="showConsequenceAndNext(9, 'D1-E2-F1-G1-H2-I2')">郭哥的生活变得更加艰难，他开始后悔没有抓住那个可能是唯一的机会，尽管它可能伴随着风险。</button>
+    <div id="consequence-D1-E2-F1-G1-H2-I2" class="consequence green-text" style="display:none;">郭哥在国内找不到工作，生活陷入绝境，最终因为一次意外事故而严重受伤，生活变得更加悲惨。</div>
+    
+    <!-- Choice and Consequence for Path D1-E2-F1-G2-H1-I1 -->
+    <button class="choice-button" id="choice-D1-E2-F1-G2-H1-I1" style="display:none;" onclick="showConsequenceAndNext(9, 'D1-E2-F1-G2-H1-I1')">决定出国工作，希望能够借此翻身。</button>
+    <div id="consequence-D1-E2-F1-G2-H1-I1" class="consequence green-text" style="display:none;">郭哥被卷入一个国际人口贩卖组织，遭受了非人的折磨，最后悲惨地死去。</div>
+    
+    <!-- Choice and Consequence for Path D1-E2-F1-G2-H1-I2 -->
+    <button class="choice-button" id="choice-D1-E2-F1-G2-H1-I2" style="display:none;" onclick="showConsequenceAndNext(9, 'D1-E2-F1-G2-H1-I2')">郭哥的生活变得更加艰难，他开始后悔没有抓住那个可能是唯一的机会，尽管它可能伴随着风险。</button>
+    <div id="consequence-D1-E2-F1-G2-H1-I2" class="consequence green-text" style="display:none;">郭哥在国内找不到工作，生活陷入绝境，最终因为一次意外事故而严重受伤，生活变得更加悲惨。</div>
+    
+    <!-- Choice and Consequence for Path D1-E2-F1-G2-H2-I1 -->
+    <button class="choice-button" id="choice-D1-E2-F1-G2-H2-I1" style="display:none;" onclick="showConsequenceAndNext(9, 'D1-E2-F1-G2-H2-I1')">在经历了传销组织的折磨后，郭哥决定出国寻找新的机会。</button>
+    <div id="consequence-D1-E2-F1-G2-H2-I1" class="consequence green-text" style="display:none;">郭哥在国外遭遇了更严重的剥削，最终因为过度劳累和疾病而去世。</div>
+    
+    <!-- Choice and Consequence for Path D1-E2-F1-G2-H2-I2 -->
+    <button class="choice-button" id="choice-D1-E2-F1-G2-H2-I2" style="display:none;" onclick="showConsequenceAndNext(9, 'D1-E2-F1-G2-H2-I2')">在经历了传销组织的折磨后，郭哥决定留在国内，但无法摆脱过去的阴影。</button>
+    <div id="consequence-D1-E2-F1-G2-H2-I2" class="consequence green-text" style="display:none;">郭哥在国内遭受歧视，无法找到稳定的工作，最终因为贫困和疾病而去世。</div>
+    
+    <!-- Choice and Consequence for Path D1-E2-F2-G1-H1-I1 -->
+    <button class="choice-button" id="choice-D1-E2-F2-G1-H1-I1" style="display:none;" onclick="showConsequenceAndNext(9, 'D1-E2-F2-G1-H1-I1')">被卷入犯罪团伙后，郭哥决定出国逃避法律的制裁。</button>
+    <div id="consequence-D1-E2-F2-G1-H1-I1" class="consequence green-text" style="display:none;">郭哥在国外继续从事犯罪活动，最终在一次警方的突击行动中被击毙。</div>
+    
+    <!-- Choice and Consequence for Path D1-E2-F2-G1-H1-I2 -->
+    <button class="choice-button" id="choice-D1-E2-F2-G1-H1-I2" style="display:none;" onclick="showConsequenceAndNext(9, 'D1-E2-F2-G1-H1-I2')">被卷入犯罪团伙后，郭哥试图留在国内改过自新，但无法摆脱犯罪团伙的控制。</button>
+    <div id="consequence-D1-E2-F2-G1-H1-I2" class="consequence green-text" style="display:none;">郭哥在国内继续遭受犯罪团伙的威胁和利用，最终在一次内部冲突中丧生。</div>
+    
+    <!-- Choice and Consequence for Path D1-E2-F2-G1-H2-I2 -->
+    <button class="choice-button" id="choice-D1-E2-F2-G1-H2-I2" style="display:none;" onclick="showConsequenceAndNext(9, 'D1-E2-F2-G1-H2-I2')">在遭受殴打和威胁后，郭哥留在国内寻求法律援助，但因为证据不足而无法将犯罪分子绳之以法。</button>
+    <div id="consequence-D1-E2-F2-G1-H2-I2" class="consequence green-text" style="display:none;">郭哥在国内生活始终处于恐惧之中，最终在一次意外中丧生。</div>
+
+    <!-- Choice and Consequence for Path D1-E2-F2-G2-H1-I1 -->
+    <button class="choice-button" id="choice-D1-E2-F2-G2-H1-I1" style="display:none;" onclick="showConsequenceAndNext(9, 'D1-E2-F2-G2-H1-I1')">在卷入非法金融诈骗案后，郭哥决定出国逃避追捕。</button>
+    <div id="consequence-D1-E2-F2-G2-H1-I1" class="consequence green-text" style="display:none;">郭哥在国外被新的犯罪团伙利用，最终因为一次失败的交易而被杀害。</div>
+
+    <!-- Choice and Consequence for Path D1-E2-F2-G2-H1-I2 -->
+    <button class="choice-button" id="choice-D1-E2-F2-G2-H1-I2" style="display:none;" onclick="showConsequenceAndNext(9, 'D1-E2-F2-G2-H1-I2')">在卷入非法金融诈骗案后，郭哥留在国内，但因为心理压力过大而选择了自我了断。</button>
+    <div id="consequence-D1-E2-F2-G2-H1-I2" class="consequence green-text" style="display:none;">郭哥的家人和朋友在国内悲痛欲绝，而犯罪团伙则因为郭哥的死亡而逍遥法外。</div>
+
+    <!-- Choice and Consequence for Path D1-E2-F2-G2-H2-I1 -->
+    <button class="choice-button" id="choice-D1-E2-F2-G2-H2-I1" style="display:none;" onclick="showConsequenceAndNext(9, 'D1-E2-F2-G2-H2-I1')">在逃离非法金融诈骗案后，郭哥决定出国，希望能够找到一线生机。</button>
+    <div id="consequence-D1-E2-F2-G2-H2-I1" class="consequence green-text" style="display:none;">郭哥在国外遭遇了更严重的犯罪团伙，被强迫参与高风险的犯罪活动，最终在一次失败的交易中被杀害。</div>
+
+    <!-- Choice and Consequence for Path D1-E2-F2-G2-H2-I2 -->
+    <button class="choice-button" id="choice-D1-E2-F2-G2-H2-I2" style="display:none;" onclick="showConsequenceAndNext(9, 'D1-E2-F2-G2-H2-I2')">在逃离非法金融诈骗案后，郭哥选择留在国内，希望能够澄清自己的名誉。</button>
+    <div id="consequence-D1-E2-F2-G2-H2-I2" class="consequence green-text" style="display:none;">郭哥在国内不断受到追捕和威胁，生活陷入极度困境，最终在一次绝望的抵抗中被执法人员误杀。</div>
+
+    <button class="choice-button" id="goNext9" style="display:none;" onclick="redirectToNewPage()">Go Next</button>
+  </div>
+
+</div>
+<!-- Add more chapters here -->
+
+<script>
+var hasChosen = false; // Global variable to track if a choice has been made
+
+// Extend the showConsequenceAndNext function to handle new chapters
+function showConsequenceAndNext(chapterNumber, choice) {
+  if (hasChosen) return; // Only allow the first choice to proceed
+  
+  var consequenceId = 'consequence-' + choice;
+  var consequence = document.getElementById(consequenceId);
+  consequence.style.display = 'block';
+  
+  // Show the next chapter's options based on the choice made
+  if (chapterNumber === 1) {
+    if (choice === 'A1') {
+      document.getElementById('choice-A1-B1').style.display = 'block';
+      document.getElementById('choice-A1-B2').style.display = 'block';
+    } else if (choice === 'A2') {
+      document.getElementById('choice-A2-B1').style.display = 'block';
+      document.getElementById('choice-A2-B2').style.display = 'block';
+    }
+  } else if (chapterNumber === 2) {
+    if (choice.startsWith('A1')) {
+      document.getElementById('choice-A1-B1-C1').style.display = 'block';
+      document.getElementById('choice-A1-B1-C2').style.display = 'block';
+    } else if (choice.startsWith('A2')) {
+      document.getElementById('choice-A2-B1-C1').style.display = 'block';
+      document.getElementById('choice-A2-B1-C2').style.display = 'block';
+    }
+  } else if (chapterNumber === 3) {
+    if (choice.startsWith('A1-B1')) {
+      document.getElementById('choice-A1-B1-C1-D1').style.display = 'block';
+      document.getElementById('choice-A1-B1-C1-D2').style.display = 'block';
+    } else if (choice.startsWith('A1-B2')) {
+      document.getElementById('choice-A1-B2-C1-D1').style.display = 'block';
+    } else if (choice.startsWith('A2-B1')) {
+      document.getElementById('choice-A2-B1-C1-D1').style.display = 'block';
+      document.getElementById('choice-A2-B1-C1-D2').style.display = 'block';
+    } else if (choice.startsWith('A2-B2')) {
+      document.getElementById('choice-A2-B2-C1-D1').style.display = 'block';
+    }
+  } else if (chapterNumber === 4) {
+    if (choice.startsWith('A1-B1-C1')) {
+      document.getElementById('choice-D1-E1').style.display = 'block';
+      document.getElementById('choice-D1-E2').style.display = 'block';
+    } else if (choice.startsWith('A1-B1-C2')) {
+      document.getElementById('choice-D1-E1').style.display = 'block';
+    } else if (choice.startsWith('A1-B2-C1')) {
+      document.getElementById('choice-D1-E1').style.display = 'block';
+      document.getElementById('choice-D1-E2').style.display = 'block';
+    } else if (choice.startsWith('A2-B1-C1')) {
+      document.getElementById('choice-D1-E1').style.display = 'block';
+      document.getElementById('choice-D1-E2').style.display = 'block';
+    } else if (choice.startsWith('A2-B1-C2')) {
+      document.getElementById('choice-D1-E1').style.display = 'block';
+    }
+  } else if (chapterNumber === 5) {
+    if (choice === 'D1-E1') {
+      window.location.href = 'happy.html'; // Redirect to a new HTML file
+      hasChosen = true; // Set flag to true after the choice is made
+      return; // Stop further execution// No further choices for this path
+    } else if (choice === 'D1-E2') {
+      document.getElementById('choice-D1-E2-F1').style.display = 'block';
+      document.getElementById('choice-D1-E2-F2').style.display = 'block';
+    }
+  } else if (chapterNumber === 6) {
+    if (choice === 'D1-E2-F1') {
+      document.getElementById('choice-D1-E2-F1-G1').style.display = 'block';
+      document.getElementById('choice-D1-E2-F1-G2').style.display = 'block';
+    } else if (choice === 'D1-E2-F2') {
+      document.getElementById('choice-D1-E2-F2-G1').style.display = 'block';
+      document.getElementById('choice-D1-E2-F2-G2').style.display = 'block';
+    }
+  } else if (chapterNumber === 7) {
+    if (choice === 'D1-E2-F1-G1') {
+      document.getElementById('choice-D1-E2-F1-G1-H1').style.display = 'block';
+      document.getElementById('choice-D1-E2-F1-G1-H2').style.display = 'block';
+    } else if (choice === 'D1-E2-F1-G2') {
+      document.getElementById('choice-D1-E2-F1-G2-H1').style.display = 'block';
+      document.getElementById('choice-D1-E2-F1-G2-H2').style.display = 'block';
+    } else if (choice === 'D1-E2-F2-G1') {
+      document.getElementById('choice-D1-E2-F2-G1-H1').style.display = 'block';
+      document.getElementById('choice-D1-E2-F2-G1-H2').style.display = 'block';
+    } else if (choice === 'D1-E2-F2-G2') {
+      document.getElementById('choice-D1-E2-F2-G2-H1').style.display = 'block';
+      document.getElementById('choice-D1-E2-F2-G2-H2').style.display = 'block';
+    }
+  }  else if (chapterNumber === 8) {
+  // After Chapter 8 choices are made, determine the outcomes for Chapter 9
+  if (choice === 'D1-E2-F1-G1-H1') {
+    document.getElementById('choice-D1-E2-F1-G1-H1-I1').style.display = 'block';
+    document.getElementById('choice-D1-E2-F1-G1-H1-I2').style.display = 'block';
+  } else if (choice === 'D1-E2-F1-G1-H2') {
+    document.getElementById('choice-D1-E2-F1-G1-H2-I1').style.display = 'block';
+    document.getElementById('choice-D1-E2-F1-G1-H2-I2').style.display = 'block';
+  } else if (choice === 'D1-E2-F1-G2-H1') {
+    document.getElementById('choice-D1-E2-F1-G2-H1-I1').style.display = 'block';
+    document.getElementById('choice-D1-E2-F1-G2-H1-I2').style.display = 'block';
+  } else if (choice === 'D1-E2-F1-G2-H2') {
+    document.getElementById('choice-D1-E2-F1-G2-H2-I1').style.display = 'block';
+    document.getElementById('choice-D1-E2-F1-G2-H2-I2').style.display = 'block';
+  } else if (choice === 'D1-E2-F2-G1-H1') {
+    document.getElementById('choice-D1-E2-F2-G1-H1-I1').style.display = 'block';
+    document.getElementById('choice-D1-E2-F2-G1-H1-I2').style.display = 'block';
+  } else if (choice === 'D1-E2-F2-G1-H2') {
+    document.getElementById('choice-D1-E2-F2-G1-H2-I1').style.display = 'block';
+    document.getElementById('choice-D1-E2-F2-G1-H2-I2').style.display = 'block';
+  } else if (choice === 'D1-E2-F2-G2-H1') {
+    document.getElementById('choice-D1-E2-F2-G2-H1-I1').style.display = 'block';
+    document.getElementById('choice-D1-E2-F2-G2-H1-I2').style.display = 'block';
+  } else if (choice === 'D1-E2-F2-G2-H2') {
+    document.getElementById('choice-D1-E2-F2-G2-H2-I1').style.display = 'block';
+    document.getElementById('choice-D1-E2-F2-G2-H2-I2').style.display = 'block';
+  }
+}
+  var goNextButtonId = 'goNext' + chapterNumber;
+  var goNextButton = document.getElementById(goNextButtonId);
+  goNextButton.style.display = 'block';
+  
+  hasChosen = true; // Set flag to true after the first choice is made
+}
+
+function goToNextChapter(nextChapterNumber) {
+  if (!hasChosen) return; // Only proceed if a choice has been made
+  
+  var currentChapter = document.getElementById('chapter' + (nextChapterNumber - 1));
+  currentChapter.style.display = 'none';
+  
+  var nextChapter = document.getElementById('chapter' + nextChapterNumber);
+  nextChapter.style.display = 'block';
+  
+  hasChosen = false; // Reset the flag for the next chapter
+  
+  // Hide the Go Next button for the next chapter after it's been clicked
+  var goNextButtonId = 'goNext' + nextChapterNumber;
+  var goNextButton = document.getElementById(goNextButtonId);
+  goNextButton.style.display = 'none';
+}
+
+// Hide all Go Next buttons initially
+window.onload = function() {
+  var goNextButtons = document.getElementsByClassName('choice-button');
+  for (var i = 0; i < goNextButtons.length; i++) {
+    if (goNextButtons[i].id.indexOf('goNext') === 0) {
+      goNextButtons[i].style.display = 'none';
+    }
+  }
+};
+function redirectToNewPage() {
+  // Redirect to a new page
+  window.location.href = 'vedio.html'; // Replace 'path/to/your/new_page.html' with the actual path to your new page
+}
+</script>
